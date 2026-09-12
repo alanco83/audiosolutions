@@ -5,26 +5,23 @@
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
   >
 
-  <meta name="theme-color" content="#020711">
+  <meta name="theme-color" content="#06111f">
 
-  <title>Ángel Marrufo | Audio Solutions</title>
+  <title>Ángel Marrufo | NFC Contact</title>
 
   <style>
-
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     html,
     body {
-      width: 100%;
+      margin: 0;
       min-height: 100%;
-      background: #020711;
+      background: #06111f;
       font-family: Arial, Helvetica, sans-serif;
     }
 
@@ -35,10 +32,10 @@
     }
 
     /* =========================
-       MAIN CARD
+       MAIN PAGE
     ========================== */
 
-    .card {
+    .page {
       position: relative;
 
       width: 100%;
@@ -46,14 +43,14 @@
 
       overflow: hidden;
 
-      background: #020711;
+      background: #06111f;
     }
 
     /* =========================
        TEMPLATE IMAGE
     ========================== */
 
-    .card img {
+    .page > img {
       display: block;
 
       width: 100%;
@@ -64,10 +61,10 @@
     }
 
     /* =========================
-       CLICKABLE BUTTON AREAS
+       INVISIBLE FUNCTIONAL BUTTONS
     ========================== */
 
-    .tap {
+    .hotspot {
       position: absolute;
 
       left: 5.5%;
@@ -75,14 +72,11 @@
 
       z-index: 10;
 
-      border-radius: 28px;
+      border-radius: 36px;
 
       text-decoration: none;
 
-      cursor: pointer;
-
-      -webkit-tap-highlight-color:
-        rgba(0, 140, 255, 0.18);
+      -webkit-tap-highlight-color: transparent;
     }
 
     /* SAVE MY CONTACT */
@@ -120,11 +114,14 @@
       height: 8.4%;
     }
 
-    /* Accessibility */
+    /* Keyboard accessibility */
 
-    .tap:focus-visible {
-      outline: 3px solid #2aa8ff;
+    .hotspot:focus-visible {
+      outline: 3px solid #36aaff;
       outline-offset: -3px;
+
+      background:
+        rgba(0, 145, 255, 0.10);
     }
 
     /* Desktop */
@@ -132,12 +129,175 @@
     @media (min-width: 900px) {
 
       body {
-        padding: 20px 0;
+        padding: 24px 0;
       }
 
-      .card {
-        border-radius: 34px;
+      .page {
+        border-radius: 28px;
 
         box-shadow:
-          0 18px 55px
+          0 20px 70px
           rgba(0, 0, 0, 0.55);
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <!-- =========================
+         NEW AUDIO SOLUTIONS TEMPLATE
+    ========================== -->
+
+    <img
+      src="angel-nfc.png"
+      alt="Ángel Marrufo digital NFC contact card"
+    >
+
+
+    <!-- =========================
+         SAVE MY CONTACT
+    ========================== -->
+
+    <a
+      class="hotspot save"
+      href="angel-marrufo.vcf"
+      download="Angel-Marrufo.vcf"
+      aria-label="Save Ángel Marrufo to contacts"
+    ></a>
+
+
+    <!-- =========================
+         CALL ME
+    ========================== -->
+
+    <a
+      class="hotspot call"
+      href="tel:+14793261678"
+      aria-label="Call Ángel Marrufo"
+    ></a>
+
+
+    <!-- =========================
+         EMAIL ME
+    ========================== -->
+
+    <a
+      class="hotspot email"
+      href="mailto:ANGELMARRUFO@ICLOUD.COM"
+      aria-label="Email Ángel Marrufo"
+    ></a>
+
+
+    <!-- =========================
+         TEXT ME
+    ========================== -->
+
+    <a
+      class="hotspot text"
+      href="sms:+14793261678"
+      aria-label="Text Ángel Marrufo"
+    ></a>
+
+
+    <!-- =========================
+         SHARE MY CONTACT
+    ========================== -->
+
+    <a
+      class="hotspot share"
+      href="#"
+      aria-label="Share Ángel Marrufo contact page"
+      onclick="shareContact(event)"
+    ></a>
+
+  </main>
+
+
+  <script>
+
+    async function shareContact(event) {
+
+      event.preventDefault();
+
+      const shareData = {
+
+        title:
+          "Ángel Marrufo | Audio Solutions",
+
+        text:
+          "Ángel Marrufo — Audio Solutions & Musical Tech",
+
+        url:
+          window.location.href
+
+      };
+
+
+      /* Native share menu on iPhone / Android */
+
+      if (navigator.share) {
+
+        try {
+
+          await navigator.share(
+            shareData
+          );
+
+        }
+
+        catch (error) {
+
+          console.log(
+            "Share cancelled."
+          );
+
+        }
+
+      }
+
+      /* Desktop / unsupported browser fallback */
+
+      else if (navigator.clipboard) {
+
+        try {
+
+          await navigator.clipboard.writeText(
+            window.location.href
+          );
+
+          alert(
+            "Page link copied."
+          );
+
+        }
+
+        catch (error) {
+
+          window.prompt(
+            "Copy this link:",
+            window.location.href
+          );
+
+        }
+
+      }
+
+      else {
+
+        window.prompt(
+          "Copy this link:",
+          window.location.href
+        );
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>
