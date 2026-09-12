@@ -2,16 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#06111f">
-  <title>Ángel Marrufo | NFC Contact</title>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <meta name="theme-color" content="#020711">
+
+  <title>Ángel Marrufo | Audio Solutions</title>
 
   <style>
-    * { box-sizing: border-box; }
-    html, body {
+
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
       min-height: 100%;
-      background: #06111f;
+      background: #020711;
       font-family: Arial, Helvetica, sans-serif;
     }
 
@@ -21,96 +34,110 @@
       align-items: flex-start;
     }
 
-    .page {
+    /* =========================
+       MAIN CARD
+    ========================== */
+
+    .card {
       position: relative;
-      width: min(100vw, 768px);
-      aspect-ratio: 2 / 3;
+
+      width: 100%;
+      max-width: 864px;
+
       overflow: hidden;
-      background: #06111f;
+
+      background: #020711;
     }
 
-    .page > img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    /* =========================
+       TEMPLATE IMAGE
+    ========================== */
+
+    .card img {
       display: block;
+
+      width: 100%;
+      height: auto;
+
       user-select: none;
       -webkit-user-drag: none;
     }
 
-    /* Invisible functional tap zones over the visible buttons */
-    .hotspot {
+    /* =========================
+       CLICKABLE BUTTON AREAS
+    ========================== */
+
+    .tap {
       position: absolute;
-      left: 19.8%;
-      width: 60.2%;
+
+      left: 5.5%;
+      width: 89%;
+
       z-index: 10;
-      border-radius: 36px;
+
+      border-radius: 28px;
+
       text-decoration: none;
-      -webkit-tap-highlight-color: transparent;
+
+      cursor: pointer;
+
+      -webkit-tap-highlight-color:
+        rgba(0, 140, 255, 0.18);
     }
 
-    .save  { top: 36.0%; height: 7.1%; }
-    .call  { top: 44.6%; height: 7.1%; }
-    .email { top: 53.2%; height: 7.2%; }
-    .text  { top: 62.0%; height: 7.1%; }
-    .share { top: 70.5%; height: 7.2%; }
+    /* SAVE MY CONTACT */
 
-    .hotspot:focus-visible {
-      outline: 3px solid #36aaff;
+    .save {
+      top: 40.2%;
+      height: 8.4%;
+    }
+
+    /* CALL ME */
+
+    .call {
+      top: 49.5%;
+      height: 8.4%;
+    }
+
+    /* EMAIL ME */
+
+    .email {
+      top: 58.8%;
+      height: 8.4%;
+    }
+
+    /* TEXT ME */
+
+    .text {
+      top: 68.1%;
+      height: 8.4%;
+    }
+
+    /* SHARE MY CONTACT */
+
+    .share {
+      top: 77.4%;
+      height: 8.4%;
+    }
+
+    /* Accessibility */
+
+    .tap:focus-visible {
+      outline: 3px solid #2aa8ff;
       outline-offset: -3px;
-      background: rgba(0,145,255,.10);
     }
 
-    @media (min-width: 769px) {
-      body { padding: 24px 0; }
-      .page {
-        border-radius: 28px;
-        box-shadow: 0 20px 70px rgba(0,0,0,.55);
+    /* Desktop */
+
+    @media (min-width: 900px) {
+
+      body {
+        padding: 20px 0;
       }
-    }
-  </style>
-</head>
 
-<body>
-  <main class="page">
-    <img src="angel-nfc.png" alt="Ángel Marrufo digital NFC contact card">
+      .card {
+        border-radius: 34px;
 
-    <!-- Saves ALL contact details from angel-marrufo.vcf -->
-    <a class="hotspot save"
-       href="angel-marrufo.vcf"
-       download="Angel-Marrufo.vcf"
-       aria-label="Save Ángel Marrufo to contacts"></a>
-
-    <a class="hotspot call"
-       href="tel:+14793261678"
-       aria-label="Call Ángel Marrufo"></a>
-
-    <a class="hotspot email"
-       href="mailto:ANGELMARRUFO@ICLOUD.COM"
-       aria-label="Email Ángel Marrufo"></a>
-
-    <a class="hotspot text"
-       href="sms:+14793261678"
-       aria-label="Text Ángel Marrufo"></a>
-
-    <a class="hotspot share"
-       href="#"
-       aria-label="Share Ángel Marrufo contact page"
-       onclick="
-         event.preventDefault();
-         if (navigator.share) {
-           navigator.share({
-             title: 'Ángel Marrufo',
-             text: 'Ángel Marrufo — Audio Solutions & Musical Tech',
-             url: window.location.href
-           });
-         } else if (navigator.clipboard) {
-           navigator.clipboard.writeText(window.location.href);
-           alert('Page link copied.');
-         }
-       "></a>
-  </main>
-</body>
-</html>
+        box-shadow:
+          0 18px 55px
+          rgba(0, 0, 0, 0.55);
